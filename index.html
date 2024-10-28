@@ -30,11 +30,16 @@
             cursor: pointer;
             color: white;
             font-weight: bold;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
         .filter-button:hover {
             transform: scale(1.05);
+        }
+
+        .filter-button.active {
+            background-color: #000; /* Dark background for selected */
+            color: #fff; /* White text for better contrast */
         }
 
         .prompt-container {
@@ -72,6 +77,26 @@
         .filter-button.learning { background-color: #616161; }
 
         .hidden { display: none; }
+
+        /* Banner styling */
+        .copy-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .copy-banner.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -81,26 +106,29 @@
 
     <div class="filter-bar">
         <!-- Timing filters -->
-        <button class="filter-button timing" onclick="toggleFilter('Start')">Start</button>
-        <button class="filter-button timing" onclick="toggleFilter('Beginnings')">Beginnings</button>
-        <button class="filter-button timing" onclick="toggleFilter('Middle')">Middle</button>
-        <button class="filter-button timing" onclick="toggleFilter('End')">End</button>
+        <button class="filter-button timing" onclick="toggleFilter(this, 'Start')">Start</button>
+        <button class="filter-button timing" onclick="toggleFilter(this, 'Beginnings')">Beginnings</button>
+        <button class="filter-button timing" onclick="toggleFilter(this, 'Middle')">Middle</button>
+        <button class="filter-button timing" onclick="toggleFilter(this, 'End')">End</button>
 
         <!-- Reflection area filters -->
-        <button class="filter-button awareness" onclick="toggleFilter('Awareness')">Awareness</button>
-        <button class="filter-button planning" onclick="toggleFilter('Planning')">Planning</button>
-        <button class="filter-button monitoring" onclick="toggleFilter('Monitoring')">Monitoring</button>
-        <button class="filter-button evaluation" onclick="toggleFilter('Evaluation')">Evaluation</button>
+        <button class="filter-button awareness" onclick="toggleFilter(this, 'Awareness')">Awareness</button>
+        <button class="filter-button planning" onclick="toggleFilter(this, 'Planning')">Planning</button>
+        <button class="filter-button monitoring" onclick="toggleFilter(this, 'Monitoring')">Monitoring</button>
+        <button class="filter-button evaluation" onclick="toggleFilter(this, 'Evaluation')">Evaluation</button>
 
         <!-- Learning focus filters -->
-        <button class="filter-button learning" onclick="toggleFilter('What I learn')">What I learn</button>
-        <button class="filter-button learning" onclick="toggleFilter('How I learn')">How I learn</button>
+        <button class="filter-button learning" onclick="toggleFilter(this, 'What I learn')">What I learn</button>
+        <button class="filter-button learning" onclick="toggleFilter(this, 'How I learn')">How I learn</button>
     </div>
 
     <div class="prompt-container" id="promptContainer">
         <!-- Prompts go here. Below is a sample structure for each prompt card. -->
         <!-- Inject JavaScript-generated prompt cards here -->
     </div>
+
+    <!-- Copy confirmation banner -->
+    <div class="copy-banner" id="copyBanner">Prompt copied to clipboard!</div>
 
     <script>
         // Sample data structure for prompts (to be replaced by your data source)
@@ -116,7 +144,11 @@
             learning: null
         };
 
-        function toggleFilter(filter) {
+        function toggleFilter(button, filter) {
+            // Toggle active class for button
+            button.classList.toggle('active');
+
+            // Set selected filters
             if (['Start', 'Beginnings', 'Middle', 'End'].includes(filter)) {
                 selectedFilters.timing = selectedFilters.timing === filter ? null : filter;
             } else if (['Awareness', 'Planning', 'Monitoring', 'Evaluation'].includes(filter)) {
@@ -148,8 +180,14 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text)
-                .then(() => alert("Prompt copied to clipboard!"))
+                .then(() => showBanner())
                 .catch(err => console.error('Error copying text: ', err));
+        }
+
+        function showBanner() {
+            const banner = document.getElementById('copyBanner');
+            banner.classList.add('show');
+            setTimeout(() => banner.classList.remove('show'), 2000); // Show for 2 seconds
         }
 
         // Initial display of all prompts
