@@ -1,0 +1,149 @@
+[
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "What I learn",
+        "name": "A1",
+        "text": "What do I already know about this subject matter?"
+    },
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "What I learn",
+        "name": "A2",
+        "text": "How can I break up the skills I need to learn this topic into several containers that can help me bundle the topics and break my learning down into manageable chunks. Right now I am not asking about content, just skills."
+    },
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "What I learn",
+        "name": "A3",
+        "text": "How can I break up the content I need to learn into several containers that can help me bundle the topics and break my learning down into manageable chunks. Right now I am not asking about skills, just content."
+    },
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "How I learn",
+        "name": "A4",
+        "text": "What do I think my strengths/weaknesses are in this area of learning? How can I play to my strengths and shore up my weaknesses?"
+    },
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "How I learn",
+        "name": "A5",
+        "text": "What goals should I set for both myself and you (the AI) to ensure effective collaboration? How should I allocate my study time between independent learning and using AI assistance to maximize efficiency?"
+    },
+    {
+        "timing": "Beginning",
+        "reflection": "Awareness",
+        "learning": "How I learn",
+        "name": "A6",
+        "text": "What can I delegate to you (the AI), and what do I need to do myself?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Planning",
+        "learning": "What I learn",
+        "name": "P1",
+        "text": "Am I staying focused on both skill and content development while I\u2019m learning with AI? How can I ensure I do this?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Planning",
+        "learning": "How I learn",
+        "name": "P2",
+        "text": "What learning strategies can I employ in addition to using AI to deepen my comprehension of the material?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Planning",
+        "learning": "How I learn",
+        "name": "P3",
+        "text": "What challenges might I face in terms of how well I can learn and recall the information about this topic?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Monitoring",
+        "learning": "How I learn",
+        "name": "M1",
+        "text": "How will I monitor my understanding and progress throughout this session? And when will I adjust my plan if needed?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Monitoring",
+        "learning": "How I learn",
+        "name": "M2",
+        "text": "In this conversation, are you (AI) providing feedback to improve my learning? How can I use it more effectively?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Monitoring",
+        "learning": "How I learn",
+        "name": "M3",
+        "text": "Are your (the AI\u2019s) responses successfully meeting my expectations? How can I adjust my instructions and feedback to improve your responses?"
+    },
+    {
+        "timing": "Middle",
+        "reflection": "Monitoring",
+        "learning": "How I learn",
+        "name": "M4",
+        "text": "What assumptions am I making about this topic and my knowledge and skills? Are these getting in the way of my learning?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "What I learn",
+        "name": "E1",
+        "text": "Compare and contrast this topic/concept with a topic I learned previously in this course\nOR\nPlease provide an acronym and an analogy to help me remember topic/concept"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "What I learn",
+        "name": "E2",
+        "text": "How can I apply what I learned in this session to future tasks or subjects?\nOR\nProvide a real world example of this topic in action and ask me to evaluate it based on what I learned"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "What I learn",
+        "name": "E3",
+        "text": "Design a rubric to evaluate whether or not I understand this topic. Provide questions for me to answer about the topic and then use this rubric to evaluate my learning and growth"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "How I learn",
+        "name": "E4",
+        "text": "What were my strengths and weaknesses learning about this topic? Give specific examples. How does this compare to what I reported at the beginning of this conversation?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "How I learn",
+        "name": "E5",
+        "text": "Did I show any biases or fall into any thinking traps?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "How I learn",
+        "name": "E6",
+        "text": "What feedback did I receive, and did I use it to improve my understanding of how I learn? What did I miss?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "How I learn",
+        "name": "E7",
+        "text": "Did I rely too much on you (the AI) to learn and develop skills? How do I strike the right balance?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "How I learn",
+        "name": "E8",
+        "text": "Check the above transcript for evidence of metacognition (or a lack thereof) and provide examples."
+    }
+]

@@ -37,11 +37,6 @@
             transform: scale(1.05);
         }
 
-        .filter-button.active {
-            background-color: #000; /* Dark background for selected */
-            color: #fff; /* White text for better contrast */
-        }
-
         .prompt-container {
             display: flex;
             flex-direction: column;
@@ -76,6 +71,11 @@
         .filter-button.timing { background-color: #9e9e9e; }
         .filter-button.learning { background-color: #616161; }
 
+        .filter-button.active {
+            background-color: #000; /* Dark background for selected */
+            color: #fff; /* White text for better contrast */
+        }
+
         .hidden { display: none; }
 
         /* Banner styling */
@@ -102,12 +102,12 @@
 <body>
 
     <h1>Metacognitive Injections</h1>
-    <p>Select filters to view prompts. Click a prompt to copy it to your clipboard.</p>
+    <p>Select filters to view prompts. Click on a prompt to copy it to your clipboard.</p>
 
     <div class="filter-bar">
         <!-- Timing filters -->
         <button class="filter-button timing" onclick="toggleFilter(this, 'Start')">Start</button>
-        <button class="filter-button timing" onclick="toggleFilter(this, 'Beginnings')">Beginnings</button>
+        <button class="filter-button timing" onclick="toggleFilter(this, 'Beginning')">Beginning</button>
         <button class="filter-button timing" onclick="toggleFilter(this, 'Middle')">Middle</button>
         <button class="filter-button timing" onclick="toggleFilter(this, 'End')">End</button>
 
@@ -131,12 +131,23 @@
     <div class="copy-banner" id="copyBanner">Prompt copied to clipboard!</div>
 
     <script>
-        // Sample data structure for prompts (to be replaced by your data source)
-        const prompts = [
-            { timing: 'Beginnings', reflection: 'Awareness', learning: 'What I learn', name: 'A2', text: 'How can I break up the skills I need to learn ...' },
-            { timing: 'Middle', reflection: 'Planning', learning: 'How I learn', name: 'P1', text: 'What steps will I take to structure my task ...' },
-            // Add more prompt objects as per your data
-        ];
+        var prompts = [];
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+        fetch('metacognitive_injections.json')
+            .then(response => response.json())
+            .then(data => {
+                initializePrompts(data); // Call the function to display prompts with the loaded data
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    });
+
+    function initializePrompts(data) {
+        prompts = data; // The data is now loaded into `prompts`
+        displayPrompts(prompts); // Call the function to display the prompts
+    }
+
 
         const selectedFilters = {
             timing: null,
@@ -177,7 +188,7 @@
                 container.appendChild(promptCard);
             });
         }
-
+        
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text)
                 .then(() => showBanner())
