@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metacognitive Injections</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .filter-button:hover {
+            transform: scale(1.05);
+        }
+
+        .prompt-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .prompt-card {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .prompt-card:hover {
+            opacity: 0.9;
+        }
+
+        /* Color themes for reflection areas */
+        .awareness { background-color: #00796b; }
+        .planning { background-color: #ff7043; }
+        .monitoring { background-color: #388e3c; }
+        .evaluation { background-color: #8e24aa; }
+
+        /* Neutral styling for other filters */
+        .filter-button.timing { background-color: #9e9e9e; }
+        .filter-button.learning { background-color: #616161; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <h1>Metacognitive Injections</h1>
+    <p>Select filters to view prompts. Click a prompt to copy it to your clipboard.</p>
+
+    <div class="filter-bar">
+        <!-- Timing filters -->
+        <button class="filter-button timing" onclick="toggleFilter('Start')">Start</button>
+        <button class="filter-button timing" onclick="toggleFilter('Beginnings')">Beginnings</button>
+        <button class="filter-button timing" onclick="toggleFilter('Middle')">Middle</button>
+        <button class="filter-button timing" onclick="toggleFilter('End')">End</button>
+
+        <!-- Reflection area filters -->
+        <button class="filter-button awareness" onclick="toggleFilter('Awareness')">Awareness</button>
+        <button class="filter-button planning" onclick="toggleFilter('Planning')">Planning</button>
+        <button class="filter-button monitoring" onclick="toggleFilter('Monitoring')">Monitoring</button>
+        <button class="filter-button evaluation" onclick="toggleFilter('Evaluation')">Evaluation</button>
+
+        <!-- Learning focus filters -->
+        <button class="filter-button learning" onclick="toggleFilter('What I learn')">What I learn</button>
+        <button class="filter-button learning" onclick="toggleFilter('How I learn')">How I learn</button>
+    </div>
+
+    <div class="prompt-container" id="promptContainer">
+        <!-- Prompts go here. Below is a sample structure for each prompt card. -->
+        <!-- Inject JavaScript-generated prompt cards here -->
+    </div>
+
+    <script>
+        // Sample data structure for prompts (to be replaced by your data source)
+        const prompts = [
+            { timing: 'Beginnings', reflection: 'Awareness', learning: 'What I learn', name: 'A2', text: 'How can I break up the skills I need to learn ...' },
+            { timing: 'Middle', reflection: 'Planning', learning: 'How I learn', name: 'P1', text: 'What steps will I take to structure my task ...' },
+            // Add more prompt objects as per your data
+        ];
+
+        const selectedFilters = {
+            timing: null,
+            reflection: null,
+            learning: null
+        };
+
+        function toggleFilter(filter) {
+            if (['Start', 'Beginnings', 'Middle', 'End'].includes(filter)) {
+                selectedFilters.timing = selectedFilters.timing === filter ? null : filter;
+            } else if (['Awareness', 'Planning', 'Monitoring', 'Evaluation'].includes(filter)) {
+                selectedFilters.reflection = selectedFilters.reflection === filter ? null : filter;
+            } else {
+                selectedFilters.learning = selectedFilters.learning === filter ? null : filter;
+            }
+            displayPrompts();
+        }
+
+        function displayPrompts() {
+            const container = document.getElementById('promptContainer');
+            container.innerHTML = '';
+
+            const filteredPrompts = prompts.filter(prompt => 
+                (!selectedFilters.timing || prompt.timing === selectedFilters.timing) &&
+                (!selectedFilters.reflection || prompt.reflection === selectedFilters.reflection) &&
+                (!selectedFilters.learning || prompt.learning === selectedFilters.learning)
+            );
+
+            filteredPrompts.forEach(prompt => {
+                const promptCard = document.createElement('div');
+                promptCard.classList.add('prompt-card', prompt.reflection.toLowerCase());
+                promptCard.innerText = `${prompt.text}`;
+                promptCard.addEventListener('click', () => copyToClipboard(prompt.text));
+                container.appendChild(promptCard);
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => alert("Prompt copied to clipboard!"))
+                .catch(err => console.error('Error copying text: ', err));
+        }
+
+        // Initial display of all prompts
+        displayPrompts();
+    </script>
+</body>
+</html>
