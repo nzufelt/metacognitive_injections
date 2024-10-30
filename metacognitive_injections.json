@@ -1,5 +1,12 @@
 [
     {
+        "timing": "Start",
+        "reflection": "timing-start",
+        "learning": "false",
+        "name": "Start/Prompt",
+        "text": "[Your original prompt, for example: I am an 11th grade student who is preparing for a biology test on cellular energetics including photosynthesis. I need to know about enzymes and energy. I need to be able to explain diagrams (e.g. Calvin Cycle, Krebs Cycle, factors effective photosynthesis etc).]\nNot only do I need to learn this material, but I would also like to periodically take metacognition breaks where I will prompt you to help me think about my thinking so I can 1) better learn and recall this information and also 2) learn new concepts more deeply and efficiently in the future."
+    },
+    {
         "timing": "Beginning",
         "reflection": "Awareness",
         "learning": "What I learn",

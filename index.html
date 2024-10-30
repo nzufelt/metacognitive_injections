@@ -67,7 +67,7 @@
         .monitoring { background-color: #5941A9; }
         .evaluation { background-color: #0B5351; }
 
-        .filter-button.timing-start { background-color: #6262F8; }
+        .timing-start { background-color: #6262F8; }
         .filter-button.timing-beginning { background-color: #4F4FF8; }
         .filter-button.timing-middle { background-color: #0A0AEB; }
         .filter-button.timing-end { background-color: #060689; }
@@ -77,8 +77,8 @@
 
         /* Display the "active filters" (actively being removed, that is) as lighter */
         .filter-button.active {
-            /* background-color: #000;  */
-            opacity: 0.5;
+            background-color: #BFBCBA; 
+            /* opacity: 0.5; */
             color: #fff; /* White text for better contrast */
         }
 
@@ -139,7 +139,6 @@
     <script>
         var prompts = [];
 
-
         document.addEventListener("DOMContentLoaded", () => {
         fetch('metacognitive_injections.json')
             .then(response => response.json())
@@ -187,7 +186,7 @@
             filteredPrompts.forEach(prompt => {
                 const promptCard = document.createElement('div');
                 promptCard.classList.add('prompt-card', prompt.reflection.toLowerCase());
-                promptCard.innerText = `${prompt.name}: ${prompt.text}`;
+                promptCard.innerText = `${prompt.name}:\n\n${prompt.text}`;
                 promptCard.addEventListener('click', () => copyToClipboard(prompt.text));
                 container.appendChild(promptCard);
             });
