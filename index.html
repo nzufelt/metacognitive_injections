@@ -61,18 +61,24 @@
             opacity: 0.9;
         }
 
-        /* Color themes for reflection areas */
-        .awareness { background-color: #00796b; }
-        .planning { background-color: #ff7043; }
-        .monitoring { background-color: #388e3c; }
-        .evaluation { background-color: #8e24aa; }
+        /* Color themes */
+        .awareness { background-color: #664200; }
+        .planning { background-color: #AA320E; }
+        .monitoring { background-color: #5941A9; }
+        .evaluation { background-color: #0B5351; }
 
-        /* Neutral styling for other filters */
-        .filter-button.timing { background-color: #9e9e9e; }
-        .filter-button.learning { background-color: #616161; }
+        .filter-button.timing-start { background-color: #6262F8; }
+        .filter-button.timing-beginning { background-color: #4F4FF8; }
+        .filter-button.timing-middle { background-color: #0A0AEB; }
+        .filter-button.timing-end { background-color: #060689; }
+        
+        .filter-button.learning-what { background-color: #C06906; }
+        .filter-button.learning-how { background-color: #F88C12; }
 
+        /* Display the "active filters" (actively being removed, that is) as lighter */
         .filter-button.active {
-            background-color: #000; /* Dark background for selected */
+            /* background-color: #000;  */
+            opacity: 0.5;
             color: #fff; /* White text for better contrast */
         }
 
@@ -81,7 +87,7 @@
         /* Banner styling */
         .copy-banner {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -106,10 +112,10 @@
 
     <div class="filter-bar">
         <!-- Timing filters -->
-        <button class="filter-button timing" onclick="toggleFilter(this, 'Start')">Start</button>
-        <button class="filter-button timing" onclick="toggleFilter(this, 'Beginning')">Beginning</button>
-        <button class="filter-button timing" onclick="toggleFilter(this, 'Middle')">Middle</button>
-        <button class="filter-button timing" onclick="toggleFilter(this, 'End')">End</button>
+        <button class="filter-button timing-start" onclick="toggleFilter(this, 'Start')">Start</button>
+        <button class="filter-button timing-beginning" onclick="toggleFilter(this, 'Beginning')">Beginning</button>
+        <button class="filter-button timing-middle" onclick="toggleFilter(this, 'Middle')">Middle</button>
+        <button class="filter-button timing-end" onclick="toggleFilter(this, 'End')">End</button>
 
         <!-- Reflection area filters -->
         <button class="filter-button awareness" onclick="toggleFilter(this, 'Awareness')">Awareness</button>
@@ -118,8 +124,8 @@
         <button class="filter-button evaluation" onclick="toggleFilter(this, 'Evaluation')">Evaluation</button>
 
         <!-- Learning focus filters -->
-        <button class="filter-button learning" onclick="toggleFilter(this, 'What I learn')">What I learn</button>
-        <button class="filter-button learning" onclick="toggleFilter(this, 'How I learn')">How I learn</button>
+        <button class="filter-button learning-what" onclick="toggleFilter(this, 'What I learn')">What I learn</button>
+        <button class="filter-button learning-how" onclick="toggleFilter(this, 'How I learn')">How I learn</button>
     </div>
 
     <div class="prompt-container" id="promptContainer">
@@ -148,25 +154,19 @@
         displayPrompts(prompts); // Call the function to display the prompts
     }
 
+    const filterNames = ['Start', 'Beginning', 'Middle', 'End', 'Awareness', 'Planning', 'Monitoring', 'Evaluation', "What I learn", "How I learn"]
 
-        const selectedFilters = {
-            timing: null,
-            reflection: null,
-            learning: null
-        };
+        const selectedFilters = {}
+        filterNames.forEach( (filter) => {
+            selectedFilters[filter] = false
+        })
 
         function toggleFilter(button, filter) {
             // Toggle active class for button
             button.classList.toggle('active');
 
-            // Set selected filters
-            if (['Start', 'Beginnings', 'Middle', 'End'].includes(filter)) {
-                selectedFilters.timing = selectedFilters.timing === filter ? null : filter;
-            } else if (['Awareness', 'Planning', 'Monitoring', 'Evaluation'].includes(filter)) {
-                selectedFilters.reflection = selectedFilters.reflection === filter ? null : filter;
-            } else {
-                selectedFilters.learning = selectedFilters.learning === filter ? null : filter;
-            }
+            selectedFilters[filter] = !selectedFilters[filter] 
+
             displayPrompts();
         }
 
@@ -175,15 +175,19 @@
             container.innerHTML = '';
 
             const filteredPrompts = prompts.filter(prompt => 
-                (!selectedFilters.timing || prompt.timing === selectedFilters.timing) &&
-                (!selectedFilters.reflection || prompt.reflection === selectedFilters.reflection) &&
-                (!selectedFilters.learning || prompt.learning === selectedFilters.learning)
+                // Determine if any of the filters is on for the given prompt
+                !selectedFilters[prompt.timing] && 
+                !selectedFilters[prompt.reflection] &&
+                !selectedFilters[prompt.learning]
+                // (!selectedFilters.timing || prompt.timing === selectedFilters.timing) &&
+                // (!selectedFilters.reflection || prompt.reflection === selectedFilters.reflection) &&
+                // (!selectedFilters.learning || prompt.learning === selectedFilters.learning)
             );
 
             filteredPrompts.forEach(prompt => {
                 const promptCard = document.createElement('div');
                 promptCard.classList.add('prompt-card', prompt.reflection.toLowerCase());
-                promptCard.innerText = `${prompt.text}`;
+                promptCard.innerText = `${prompt.name}: ${prompt.text}`;
                 promptCard.addEventListener('click', () => copyToClipboard(prompt.text));
                 container.appendChild(promptCard);
             });

@@ -94,15 +94,29 @@
         "timing": "End",
         "reflection": "Evaluation",
         "learning": "What I learn",
-        "name": "E1",
-        "text": "Compare and contrast this topic/concept with a topic I learned previously in this course\nOR\nPlease provide an acronym and an analogy to help me remember topic/concept"
+        "name": "E1a",
+        "text": "Compare and contrast this topic/concept with a topic I learned previously in this course"
     },
     {
         "timing": "End",
         "reflection": "Evaluation",
         "learning": "What I learn",
-        "name": "E2",
-        "text": "How can I apply what I learned in this session to future tasks or subjects?\nOR\nProvide a real world example of this topic in action and ask me to evaluate it based on what I learned"
+        "name": "E1b",
+        "text": "Please provide an acronym and an analogy to help me remember topic/concept"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "What I learn",
+        "name": "E2a",
+        "text": "How can I apply what I learned in this session to future tasks or subjects?"
+    },
+    {
+        "timing": "End",
+        "reflection": "Evaluation",
+        "learning": "What I learn",
+        "name": "E2b",
+        "text": "Provide a real world example of this topic in action and ask me to evaluate it based on what I learned"
     },
     {
         "timing": "End",
